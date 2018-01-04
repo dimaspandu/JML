@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>JML</title>
+		<script>
+		    var JMLDecoded = function (){
+		    	var a = document.getElementsByTagName("JML");
+		    	var b, c, d, e, f;
+
+		    	for(b = 0; b<a.length; b++){
+		    		c = a[b].getAttribute("console");
+		    		d = a[b].getAttribute("DECODED");
+
+		    		if(d !== null){
+		    			e = document.createElement("script");
+
+		    			for(f = 0; f<c.length; f++){
+		    				c = c.replace("Genus", "var").replace("ALGORITHM", "function").replace("^", "\"").replace("`", "'");
+		    			}
+
+		    			e.innerHTML = c;
+
+		    			document.body.appendChild(e);
+
+		    			a[b].innerHTML = "";
+		    		}
+		    	}
+		    };
+		</script>
+	</head>
+	<body>
+    	<JML console="Genus mes = ALGORITHM (){ document.write(^JML 1 Working!<br />^); }; mes();" DECODED>...</JML>
+    	<JML console="Genus mes = ALGORITHM (){ document.write(^JML 2 Working!<br />^); }; mes();" DECODED>...</JML>
+    	<JML console="Genus mes = ALGORITHM (){ document.write(`JML 3 Working!<br />`); }; mes();" DECODED>...</JML>
+    	<script>
+    		JMLDecoded();
+    	</script>
+	</body>
+</html>
